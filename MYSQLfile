@@ -1,1 +1,119 @@
+-- This is that schema code
+-- the one I made before
 
+-- schema: rappler
+-- table1: account
+-- - EmailAddress {pk}
+-- - Password
+-- - FirstName
+-- - LastName
+-- - Birthday
+-- - Gender
+-- - DateRegistered
+-- - LastLoggedIn
+-- - AdminID
+-- table2: article
+-- - ArticleID {pk}
+-- - Category
+-- - Title
+-- - Content
+-- - Views
+-- - ArticleURL
+-- - ImageURL
+-- - DatePublished
+-- - TimePublished
+-- - DateUpdated
+-- - TimeUpdated
+-- table 3: author
+-- - ArticleID {pk}
+-- - AuthorEmail
+-- table 4: comment
+-- - ArticleID {pk}
+-- - Comment {pk}
+-- - CommenterEmail {pk}
+-- - Date
+-- table 5: journalist
+-- - JournalistID {pk}
+-- - EmailAddress
+-- - Password
+-- - PictureURL
+-- - Bio
+-- - TwitterUserName
+-- - DateRegistered
+-- - LastPosted
+-- table 6: reactions
+-- - ArticleID {pk}
+-- - IPAddress {pk}
+-- - Reaction
+
+
+CREATE SCHEMA `rappler` ;
+
+
+CREATE TABLE `rappler`.`account` (
+  `EmailAddress` VARCHAR(100) NOT NULL,
+  `Password` VARCHAR(45) NULL,
+  `FirstName` VARCHAR(45) NULL,
+  `LastName` VARCHAR(45) NULL,
+  `Birthday` DATE NULL,
+  `Gender` VARCHAR(1) NULL,
+  `DateRegistered` DATE NULL,
+  `LastLoggedIn` DATETIME NULL,
+  `AdminID` VARCHAR(45) NULL DEFAULT NULL,
+  PRIMARY KEY (`EmailAddress`));
+
+
+CREATE TABLE `rappler`.`article` (
+  `ArticleID` INT NOT NULL,
+  `Category` VARCHAR(45) NULL,
+  `Title` VARCHAR(45) NULL,
+  `Content` VARCHAR(45) NULL,
+  `Views` INT NULL,
+  `ArticleURL` VARCHAR(1000) NULL,
+  `ImageURL` VARCHAR(1000) NULL,
+  `DatePublished` DATE NULL,
+  `TimePublished` TIME NULL,
+  `DateUpdated` DATE NULL,
+  `TimeUpdated` TIME NULL,
+  PRIMARY KEY (`ArticleID`));
+
+
+CREATE TABLE `rappler`.`author` (
+  `ArticleID` INT NOT NULL,
+  `AuthorEmail` VARCHAR(100) NULL,
+  PRIMARY KEY (`ArticleID`));
+
+
+CREATE TABLE `rappler`.`comment` (
+  `ArticleID` INT NOT NULL,
+  `Comment` VARCHAR(45) NOT NULL,
+  `CommenterEmail` VARCHAR(100) NOT NULL,
+  `Date` DATETIME NULL,
+  PRIMARY KEY (`ArticleID`, `Comment`, `CommenterEmail`));
+
+
+CREATE TABLE `rappler`.`journalist` (
+  `JournalistID` INT NOT NULL,
+  `EmailAddress` VARCHAR(100) NULL,
+  `Password` VARCHAR(45) NULL,
+  `PictureURL` VARCHAR(1000) NULL,
+  `Bio` VARCHAR(45) NULL,
+  `TwitterUserName` VARCHAR(45) NULL,
+  `DateRegistered` DATE NULL,
+  `LastPosted` DATETIME NULL,
+  PRIMARY KEY (`JournalistID`));
+
+
+CREATE TABLE `rappler`.`reactions` (
+  `ArticleID` INT NOT NULL,
+  `IPAddress` VARCHAR(45) NOT NULL,
+  `Reaction` VARCHAR(20) NULL,
+  PRIMARY KEY (`ArticleID`, `IPAddress`));
+
+
+
+
+
+
+
+ 
