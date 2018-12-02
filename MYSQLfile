@@ -1,7 +1,7 @@
 -- This is that schema code
 -- the one I made before
 
--- schema: rappler
+-- schema: rappler2
 -- table1: user
 -- - EmailAddress {pk}
 -- - Password
@@ -49,7 +49,7 @@
 CREATE SCHEMA `rappler2` ;
 
 
-CREATE TABLE `rappler`.`user` (
+CREATE TABLE `rappler2`.`user` (
   `EmailAddress` VARCHAR(100) NOT NULL,
   `Password` VARCHAR(45) NULL,
   `FirstName` VARCHAR(45) NULL,
@@ -62,7 +62,7 @@ CREATE TABLE `rappler`.`user` (
   PRIMARY KEY (`EmailAddress`));
 
 
-CREATE TABLE `rappler`.`article` (
+CREATE TABLE `rappler2`.`article` (
   `ArticleID` INT NOT NULL,
   `Category` VARCHAR(45) NULL,
   `Title` VARCHAR(45) NULL,
@@ -80,7 +80,7 @@ CREATE TABLE `rappler`.`article` (
   PRIMARY KEY (`ArticleID`));
 
 
-CREATE TABLE `rappler`.`comment` (
+CREATE TABLE `rappler2`.`comment` (
   `ArticleID` INT NOT NULL,
   `Comment` VARCHAR(45) NOT NULL,
   `CommenterEmail` VARCHAR(100) NOT NULL,
@@ -88,7 +88,7 @@ CREATE TABLE `rappler`.`comment` (
   PRIMARY KEY (`ArticleID`, `Comment`, `CommenterEmail`));
 
 
-CREATE TABLE `rappler`.`journalist` (
+CREATE TABLE `rappler2`.`journalist` (
   `JournalistID` INT NOT NULL,
   `EmailAddress` VARCHAR(100) NULL,
   `Password` VARCHAR(45) NULL,
@@ -99,7 +99,7 @@ CREATE TABLE `rappler`.`journalist` (
   PRIMARY KEY (`JournalistID`));
 
 
-CREATE TABLE `rappler`.`reactions` (
+CREATE TABLE `rappler2`.`reactions` (
   `ArticleID` INT NOT NULL,
   `IPAddress` VARCHAR(45) NOT NULL,
   `Reaction` VARCHAR(20) NULL,
