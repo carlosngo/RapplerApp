@@ -24,6 +24,9 @@
 -- - TimePublished
 -- - DateUpdated
 -- - TimeUpdated
+-- - Comment
+-- - Reaction
+-- - Author
 -- table 3: comment
 -- - ArticleID {pk}
 -- - Comment {pk}
@@ -36,7 +39,6 @@
 -- - PictureURL
 -- - Bio
 -- - TwitterUserName
--- - DateRegistered
 -- - LastPosted
 -- table 5: reactions
 -- - ArticleID {pk}
