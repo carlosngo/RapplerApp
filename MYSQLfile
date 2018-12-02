@@ -2,7 +2,7 @@
 -- the one I made before
 
 -- schema: rappler
--- table1: account
+-- table1: user
 -- - EmailAddress {pk}
 -- - Password
 -- - FirstName
@@ -24,15 +24,12 @@
 -- - TimePublished
 -- - DateUpdated
 -- - TimeUpdated
--- table 3: author
--- - ArticleID {pk}
--- - AuthorEmail
--- table 4: comment
+-- table 3: comment
 -- - ArticleID {pk}
 -- - Comment {pk}
 -- - CommenterEmail {pk}
 -- - Date
--- table 5: journalist
+-- table 4: journalist
 -- - JournalistID {pk}
 -- - EmailAddress
 -- - Password
@@ -41,16 +38,16 @@
 -- - TwitterUserName
 -- - DateRegistered
 -- - LastPosted
--- table 6: reactions
+-- table 5: reactions
 -- - ArticleID {pk}
 -- - IPAddress {pk}
 -- - Reaction
 
 
-CREATE SCHEMA `rappler` ;
+CREATE SCHEMA `rappler2` ;
 
 
-CREATE TABLE `rappler`.`account` (
+CREATE TABLE `rappler`.`user` (
   `EmailAddress` VARCHAR(100) NOT NULL,
   `Password` VARCHAR(45) NULL,
   `FirstName` VARCHAR(45) NULL,
@@ -75,12 +72,9 @@ CREATE TABLE `rappler`.`article` (
   `TimePublished` TIME NULL,
   `DateUpdated` DATE NULL,
   `TimeUpdated` TIME NULL,
-  PRIMARY KEY (`ArticleID`));
-
-
-CREATE TABLE `rappler`.`author` (
-  `ArticleID` INT NOT NULL,
-  `AuthorEmail` VARCHAR(100) NULL,
+  `Comment` VARCHAR(10000) NULL,
+  `Reaction` VARCHAR(20) NULL,
+  `Author` VARCHAR(1000) NULL,
   PRIMARY KEY (`ArticleID`));
 
 
@@ -99,7 +93,6 @@ CREATE TABLE `rappler`.`journalist` (
   `PictureURL` VARCHAR(1000) NULL,
   `Bio` VARCHAR(45) NULL,
   `TwitterUserName` VARCHAR(45) NULL,
-  `DateRegistered` DATE NULL,
   `LastPosted` DATETIME NULL,
   PRIMARY KEY (`JournalistID`));
 
