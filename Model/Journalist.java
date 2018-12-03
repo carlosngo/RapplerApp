@@ -3,77 +3,86 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model;
+package model;
+
+import java.sql.Timestamp;
 
 /**
  *
  * @author Miggy
+ * @author Stanley Sie
  */
 public class Journalist {
     
+    public static final String TABLE_NAME = "Journalist";
+    
     private int JournalistID;
-    private String EmailAddress;
-    private String Password;
-    private String PictureURL;
-    private String Bio;
-    private String TwitterUserName;
-    private String DateTimeRegistered;
-    private String LastPosted;
-    
-    public Journalist(){
-        //
-    }
-    
-    
-    
+    private String emailAddress, password, pictureURL, bio, twitterUserName;
+    private Timestamp lastPosted;
+
+    public static final String COL_JOURNALISTID = "JournalistID";
+    public static final String COL_EMAILADDRESS = "EmailAddress";
+    public static final String COL_PASSWORD = "Password";
+    public static final String COL_PICTUREURL = "PictureURL";
+    public static final String COL_BIO = "Bio";
+    public static final String COL_TWITTERUSERNAME = "TwitterUserName";
+    public static final String COL_LASTPOSTED = "LastPosted";
     
     public int getJournalistID() {
         return JournalistID;
     }
-    public void setJournalistID(int journalistID) {
-        JournalistID = journalistID;
+
+    public void setJournalistID(int JournalistID) {
+        this.JournalistID = JournalistID;
     }
+
     public String getEmailAddress() {
-	return EmailAddress;
+        return emailAddress;
     }
+
     public void setEmailAddress(String emailAddress) {
-	EmailAddress = emailAddress;
+        this.emailAddress = emailAddress;
     }
+
     public String getPassword() {
-        return Password;
+        return password;
     }
+
     public void setPassword(String password) {
-	Password = password;
+        this.password = password;
     }
+
     public String getPictureURL() {
-	return PictureURL;
+        return pictureURL;
     }
+
     public void setPictureURL(String pictureURL) {
-	PictureURL = pictureURL;    
+        this.pictureURL = pictureURL;
     }
+
     public String getBio() {
-	return Bio;
+        return bio;
     }
+
     public void setBio(String bio) {
-        Bio = bio;
+        this.bio = bio;
     }
+
     public String getTwitterUserName() {
-	return TwitterUserName;
+        return twitterUserName;
     }
+
     public void setTwitterUserName(String twitterUserName) {
-	TwitterUserName = twitterUserName;
+        this.twitterUserName = twitterUserName;
     }
-    public String getDateTimeRegistered() {
-	return DateTimeRegistered;
+
+    public Timestamp getLastPosted() {
+        return lastPosted;
     }
-    public void setDateTimeRegistered(String dateTimeRegistered) {
-	DateTimeRegistered = dateTimeRegistered;
+
+    public void setLastPosted(Timestamp lastPosted) {
+        this.lastPosted = lastPosted;
     }
-    public String getLastPosted() {
-	return LastPosted;
-    }
-    public void setLastPosted(String lastPosted) {
-	LastPosted = lastPosted;
-    }
+    
     
 }
