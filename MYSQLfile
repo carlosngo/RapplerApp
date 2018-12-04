@@ -109,7 +109,7 @@ CREATE TABLE `rapplerdb`.`reactions` (
 
 CREATE TABLE `rapplerdb.author` (
   `ArticleID` VARCHAR(100) NOT NULL,
-  `AuthorEmail VARCHAR(1000) NOT NULL,
+  `AuthorEmail` VARCHAR(1000) NOT NULL,
  PRIMARY KEY (`ArticleID`, `AuthorEmail`));
 
 
