@@ -110,3 +110,7 @@ CREATE TABLE `rapplerdb`.`author` (
   `ArticleID` VARCHAR(100) NOT NULL,
   `AuthorEmail` VARCHAR(100) NOT NULL,
  PRIMARY KEY (`ArticleID`, `AuthorEmail`));
+ 
+ 
+ INSERT INTO `rapplerdb`.`article` (`ArticleID`, `Category`, `Title`, `Content`, `Views`, `ArticleURL`, `ImageURL`, `DatePublished`, `TimePublished`, `DateUpdated`, `TimeUpdated`, `Comment`, `Reaction`, `Author`) VALUES ('a001', 'Politics', 'Lorem', 'Lorem Ipsum', '0', 'http://rapplerdb/Lorem', 'http://image', '2018-12-04', '10:14:00', '2018-12-04', '10:15:00', 'N', 'Happy', 'Npe');
+
