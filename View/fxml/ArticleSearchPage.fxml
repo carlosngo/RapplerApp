@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="290.0" prefWidth="490.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <Label style="-fx-padding: 20;" text="HEADER" textAlignment="CENTER" textFill="#980000" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+   </top>
+   <center>
+      <VBox alignment="TOP_CENTER" prefHeight="230.0" prefWidth="584.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="TOP_CENTER" prefHeight="48.0" prefWidth="600.0" spacing="15.0" style="-fx-opaque-insets: 10;">
+               <children>
+                  <Button mnemonicParsing="false" text="Business" />
+                  <Button mnemonicParsing="false" text="Tech" />
+                  <Button mnemonicParsing="false" text="Politics" />
+                  <Button mnemonicParsing="false" text="Education" />
+                  <Button mnemonicParsing="false" text="Health" />
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" prefHeight="35.0" prefWidth="600.0">
+               <children>
+                  <TextField alignment="TOP_CENTER" prefHeight="25.0" prefWidth="279.0" />
+                  <Button alignment="TOP_CENTER" mnemonicParsing="false" text="Search" />
+               </children>
+            </HBox>
+            <HBox alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Title1" />
+                        <Label text="Date1" />
+                        <Label text="Preview1" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Title2" />
+                        <Label text="Date2" />
+                        <Label text="Preview2" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="BOTTOM_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Label text="Title3" />
+                        <Label text="Date3" />
+                        <Label text="Preview3" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
+   </center>
+</BorderPane>
