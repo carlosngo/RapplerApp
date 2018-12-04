@@ -66,7 +66,7 @@ CREATE TABLE `rapplerdb`.`user` (
 
 
 CREATE TABLE `rapplerdb`.`article` (
-  `ArticleID` INT NOT NULL,
+  `ArticleID` VARCHAR(100) NOT NULL,
   `Category` VARCHAR(45) NULL,
   `Title` VARCHAR(45) NULL,
   `Content` VARCHAR(45) NULL,
