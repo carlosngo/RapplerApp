@@ -61,7 +61,6 @@ CREATE TABLE `rapplerdb`.`user` (
   `Gender` VARCHAR(1) NULL,
   `DateRegistered` DATE NULL,
   `LastLoggedIn` DATETIME NULL,
-  `AdminID` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`EmailAddress`));
 
 
