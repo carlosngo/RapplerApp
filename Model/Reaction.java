@@ -14,35 +14,34 @@ public class Reaction {
     
     public static final String TABLE_NAME = "Reaction";
     
-    private int reaction, articleID;
-    private String IPAddress;
+    private String reaction, articleID, sessionID;
 
     public static final String COL_REACTION = "Reaction";
     public static final String COL_ARTICLEID = "ArticleID";
-    public static final String COL_IPADDRESS = "IPAddress";
+    public static final String COL_SESSIONID = "SessionID";
     
-    public int getReaction() {
+    public String getReaction() {
         return reaction;
     }
 
-    public void setReaction(int reaction) {
+    public void setReaction(String reaction) {
         this.reaction = reaction;
     }
 
-    public int getArticleID() {
+    public String getArticleID() {
         return articleID;
     }
 
-    public void setArticleID(int articleID) {
+    public void setArticleID(String articleID) {
         this.articleID = articleID;
     }
 
-    public String getIPAddress() {
-        return IPAddress;
+    public String getSessionID() {
+        return sessionID;
     }
 
-    public void setIPAddress(String IPAddress) {
-        this.IPAddress = IPAddress;
+    public void setSessionID(String sessionID) {
+        this.sessionID = sessionID;
     }
     
     

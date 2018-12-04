@@ -16,8 +16,7 @@ public class Comment {
     
     public static final String TABLE_NAME = "Comment";
     
-    private int articleID;
-    private String comment, commenterEmail;
+    private String articleID, comment, commenterEmail;
     private Date date;
 
     public static final String COL_ARTICLEID = "ArticleID";
@@ -25,11 +24,11 @@ public class Comment {
     public static final String COL_COMMENTEREMAIL = "CommenterEmail";
     public static final String COL_DATE = "Date";
     
-    public int getArticleID() {
+    public String getArticleID() {
         return articleID;
     }
 
-    public void setArticleID(int articleID) {
+    public void setArticleID(String articleID) {
         this.articleID = articleID;
     }
 

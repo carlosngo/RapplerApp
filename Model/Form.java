@@ -7,14 +7,8 @@ package model;
 
 /**
  *
- * @author Miggy
  * @author Stanley Sie
  */
-public abstract class User {
+public class Form {
     
-    public static final String TABLE_NAME = "User";
-    
-    private String sessionID;
-    
-    public static final String COL_SESSIONID = "SessionID";
 }
