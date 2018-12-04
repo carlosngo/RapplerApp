@@ -1,7 +1,7 @@
--- This is that schema code
+-- This is that schema code (modified)
 -- the one I made before
 
--- schema: rappler2
+-- schema: rapplerdb
 -- table1: user
 -- - EmailAddress {pk}
 -- - Password
@@ -11,7 +11,6 @@
 -- - Gender
 -- - DateRegistered
 -- - LastLoggedIn
--- - AdminID
 -- table2: article
 -- - ArticleID {pk}
 -- - Category
@@ -44,12 +43,15 @@
 -- - ArticleID {pk}
 -- - IPAddress {pk}
 -- - Reaction
+-- table 6: author
+-- - ArticleID {pk}
+-- - AuthorEmail {pk}
+-- table 7: Admin [MAYBE] 
+ 
+DROP DATABASE rapplerdb; -- WARNING: Will Drop all saved data in `rapplerdb`
+CREATE SCHEMA `rapplerdb` ;
 
-
-CREATE SCHEMA `rappler2` ;
-
-
-CREATE TABLE `rappler2`.`user` (
+CREATE TABLE `rapplerdb`.`user` (
   `EmailAddress` VARCHAR(100) NOT NULL,
   `Password` VARCHAR(45) NULL,
   `FirstName` VARCHAR(45) NULL,
@@ -58,12 +60,11 @@ CREATE TABLE `rappler2`.`user` (
   `Gender` VARCHAR(1) NULL,
   `DateRegistered` DATE NULL,
   `LastLoggedIn` DATETIME NULL,
-  `AdminID` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`EmailAddress`));
 
 
-CREATE TABLE `rappler2`.`article` (
-  `ArticleID` INT NOT NULL,
+CREATE TABLE `rapplerdb`.`article` (
+  `ArticleID` VARCHAR(100) NOT NULL,
   `Category` VARCHAR(45) NULL,
   `Title` VARCHAR(45) NULL,
   `Content` VARCHAR(45) NULL,
@@ -74,21 +75,21 @@ CREATE TABLE `rappler2`.`article` (
   `TimePublished` TIME NULL,
   `DateUpdated` DATE NULL,
   `TimeUpdated` TIME NULL,
-  `Comment` VARCHAR(10000) NULL,
+  `Comment` VARCHAR(1000) NULL,
   `Reaction` VARCHAR(20) NULL,
   `Author` VARCHAR(1000) NULL,
   PRIMARY KEY (`ArticleID`));
 
 
-CREATE TABLE `rappler2`.`comment` (
-  `ArticleID` INT NOT NULL,
+CREATE TABLE `rapplerdb`.`comment` (
+  `ArticleID` VARCHAR(100) NOT NULL,
   `Comment` VARCHAR(45) NOT NULL,
   `CommenterEmail` VARCHAR(100) NOT NULL,
   `Date` DATETIME NULL,
   PRIMARY KEY (`ArticleID`, `Comment`, `CommenterEmail`));
 
 
-CREATE TABLE `rappler2`.`journalist` (
+CREATE TABLE `rapplerdb`.`journalist` (
   `JournalistID` INT NOT NULL,
   `EmailAddress` VARCHAR(100) NULL,
   `Password` VARCHAR(45) NULL,
@@ -99,16 +100,23 @@ CREATE TABLE `rappler2`.`journalist` (
   PRIMARY KEY (`JournalistID`));
 
 
-CREATE TABLE `rappler2`.`reactions` (
-  `ArticleID` INT NOT NULL,
-  `IPAddress` VARCHAR(45) NOT NULL,
+CREATE TABLE `rapplerdb`.`reactions` (
+  `ArticleID` VARCHAR(100) NOT NULL,
+  `SessionID` VARCHAR(45) NOT NULL,
   `Reaction` VARCHAR(20) NULL,
-  PRIMARY KEY (`ArticleID`, `IPAddress`));
+  PRIMARY KEY (`ArticleID`, `SessionID`));
 
-
-
-
-
-
-
+CREATE TABLE `rapplerdb`.`author` (
+  `ArticleID` VARCHAR(100) NOT NULL,
+  `AuthorEmail` VARCHAR(100) NOT NULL,
+ PRIMARY KEY (`ArticleID`, `AuthorEmail`));
  
+ 
+INSERT INTO `rapplerdb`.`article` (`ArticleID`, `Category`, `Title`, `Content`, `Views`, `ArticleURL`, `ImageURL`, `DatePublished`, `TimePublished`, `DateUpdated`, `TimeUpdated`, `Comment`, `Reaction`, `Author`) VALUES ('a001', 'Politics', 'Lorem', 'Lorem Ipsum', '0', 'http://rapplerdb/Lorem', 'http://image', '2018-12-04', '10:14:00', '2018-12-04', '10:15:00', 'N', 'Happy', 'Npe');
+INSERT INTO `rapplerdb`.`author` (`ArticleID`, `AuthorEmail`) VALUES ('a001', 'Npe');
+INSERT INTO `rapplerdb`.`comment` (`ArticleID`, `Comment`, `CommenterEmail`, `Date`) VALUES ('a001', 'N', 'npe@mail.com', '2018-12-04');
+INSERT INTO `rapplerdb`.`journalist` (`JournalistID`, `EmailAddress`, `Password`, `PictureURL`, `Bio`, `TwitterUserName`, `LastPosted`) VALUES ('001', 'npe@mail.com', '1234', 'http://image/image', 'lol', 'npe', '2018-12-04 10:14:00');
+INSERT INTO `rapplerdb`.`reactions` (`ArticleID`, `SessionID`, `Reaction`) VALUES ('a001', 'aa01', 'Happy');
+INSERT INTO `rapplerdb`.`user` (`EmailAddress`, `Password`, `FirstName`, `LastName`, `Birthday`, `Gender`, `DateRegistered`, `LastLoggedIn`) VALUES ('npe@mail.com', '1234', 'N', 'E', '2000-01-01', 'M', '2018-12-04', '2018-12-04');
+
+
