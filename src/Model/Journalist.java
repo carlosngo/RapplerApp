@@ -5,75 +5,58 @@
  */
 package Model;
 
+import java.sql.*;
+import java.util.*;
+
 /**
  *
  * @author Miggy
  */
-public class Journalist {
-    
+public class Journalist extends RegisteredUser {
+
     private int JournalistID;
-    private String EmailAddress;
-    private String Password;
-    private String PictureURL;
     private String Bio;
-    private String TwitterUserName;
-    private String DateTimeRegistered;
-    private String LastPosted;
-    
-    public Journalist(){
-        //
+    private Timestamp DateTimeRegistered;
+    private Timestamp LastPosted;
+    private ArrayList<Article> works;
+
+    public Timestamp getDateTimeRegistered() {
+        return DateTimeRegistered;
     }
-    
-    
-    
-    
+
+    public void setDateTimeRegistered(Timestamp DateTimeRegistered) {
+        this.DateTimeRegistered = DateTimeRegistered;
+    }
+
+    public ArrayList<Article> getWorks() {
+        return works;
+    }
+
+    public void setWorks(ArrayList<Article> works) {
+        this.works = works;
+    }
+
     public int getJournalistID() {
         return JournalistID;
     }
-    public void setJournalistID(int journalistID) {
-        JournalistID = journalistID;
-    }
-    public String getEmailAddress() {
-	return EmailAddress;
-    }
-    public void setEmailAddress(String emailAddress) {
-	EmailAddress = emailAddress;
-    }
-    public String getPassword() {
-        return Password;
-    }
-    public void setPassword(String password) {
-	Password = password;
-    }
-    public String getPictureURL() {
-	return PictureURL;
-    }
-    public void setPictureURL(String pictureURL) {
-	PictureURL = pictureURL;    
-    }
+
     public String getBio() {
-	return Bio;
+        return Bio;
     }
+
     public void setBio(String bio) {
         Bio = bio;
     }
-    public String getTwitterUserName() {
-	return TwitterUserName;
+
+    public Timestamp getLastPosted() {
+        return LastPosted;
     }
-    public void setTwitterUserName(String twitterUserName) {
-	TwitterUserName = twitterUserName;
+
+    public void setLastPosted(Timestamp lastPosted) {
+        LastPosted = lastPosted;
     }
-    public String getDateTimeRegistered() {
-	return DateTimeRegistered;
+
+    public void addArticle(Article a) {
+        works.add(a);
     }
-    public void setDateTimeRegistered(String dateTimeRegistered) {
-	DateTimeRegistered = dateTimeRegistered;
-    }
-    public String getLastPosted() {
-	return LastPosted;
-    }
-    public void setLastPosted(String lastPosted) {
-	LastPosted = lastPosted;
-    }
-    
 }
