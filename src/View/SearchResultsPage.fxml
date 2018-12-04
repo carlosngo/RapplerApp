@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
@@ -8,12 +13,15 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="438.0" prefWidth="455.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="438.0" prefWidth="455.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <Label prefHeight="72.0" prefWidth="373.0" text="SEARCH RESULTS PAGE" textFill="#980000" BorderPane.alignment="CENTER">
          <font>
             <Font size="30.0" />
          </font>
+         <effect>
+            <Blend />
+         </effect>
       </Label>
    </top>
    <center>
@@ -40,16 +48,28 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" text="Main Menu" translateX="160.0" GridPane.columnIndex="1" GridPane.rowIndex="13" />
-            <Label text="Title1" GridPane.columnIndex="1" />
+            <Button mnemonicParsing="false" text="Main Menu" textFill="#069e04" translateX="160.0" GridPane.columnIndex="1" GridPane.rowIndex="13">
+               <effect>
+                  <DropShadow />
+               </effect></Button>
+            <Label text="Title1" GridPane.columnIndex="1">
+               <effect>
+                  <Blend />
+               </effect></Label>
             <Label text="Preveiw1" translateX="20.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Date1" translateX="20.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="Author1" translateX="20.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label text="Title2" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label text="Title2" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <effect>
+                  <Blend />
+               </effect></Label>
             <Label text="Preview2" translateX="20.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Label text="Date2" translateX="20.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
             <Label text="Author2" translateX="20.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <Label text="Title3" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Label text="Title3" GridPane.columnIndex="1" GridPane.rowIndex="8">
+               <effect>
+                  <Blend />
+               </effect></Label>
             <Label text="Preview3" translateX="20.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
             <Label text="Date3" translateX="20.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
             <Label text="Author3" translateX="20.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
