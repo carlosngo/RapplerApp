@@ -48,9 +48,8 @@
 -- - AuthorEmail {pk}
 -- table 7: Admin [MAYBE] 
 
-
+DROP DATABASE rapplerdb; -- WARNING: Will Drop all saved data in `rapplerdb`
 CREATE SCHEMA `rapplerdb` ;
-
 
 CREATE TABLE `rapplerdb`.`user` (
   `EmailAddress` VARCHAR(100) NOT NULL,
@@ -76,14 +75,14 @@ CREATE TABLE `rapplerdb`.`article` (
   `TimePublished` TIME NULL,
   `DateUpdated` DATE NULL,
   `TimeUpdated` TIME NULL,
-  `Comment` VARCHAR(10000) NULL,
+  `Comment` VARCHAR(1000) NULL,
   `Reaction` VARCHAR(20) NULL,
   `Author` VARCHAR(1000) NULL,
   PRIMARY KEY (`ArticleID`));
 
 
 CREATE TABLE `rapplerdb`.`comment` (
-  `ArticleID` INT NOT NULL,
+  `ArticleID` VARCHAR(100) NOT NULL,
   `Comment` VARCHAR(45) NOT NULL,
   `CommenterEmail` VARCHAR(100) NOT NULL,
   `Date` DATETIME NULL,
@@ -102,18 +101,12 @@ CREATE TABLE `rapplerdb`.`journalist` (
 
 
 CREATE TABLE `rapplerdb`.`reactions` (
-  `ArticleID` INT NOT NULL,
+  `ArticleID` VARCHAR(100) NOT NULL,
   `IPAddress` VARCHAR(45) NOT NULL,
   `Reaction` VARCHAR(20) NULL,
   PRIMARY KEY (`ArticleID`, `IPAddress`));
 
-CREATE TABLE `rapplerdb.author` (
+CREATE TABLE `rapplerdb`.`author` (
   `ArticleID` VARCHAR(100) NOT NULL,
-  `AuthorEmail` VARCHAR(1000) NOT NULL,
+  `AuthorEmail` VARCHAR(100) NOT NULL,
  PRIMARY KEY (`ArticleID`, `AuthorEmail`));
-
-
-
-
-
- 
