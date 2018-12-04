@@ -47,7 +47,7 @@
 -- - ArticleID {pk}
 -- - AuthorEmail {pk}
 -- table 7: Admin [MAYBE] 
-
+ 
 DROP DATABASE rapplerdb; -- WARNING: Will Drop all saved data in `rapplerdb`
 CREATE SCHEMA `rapplerdb` ;
 
@@ -102,9 +102,9 @@ CREATE TABLE `rapplerdb`.`journalist` (
 
 CREATE TABLE `rapplerdb`.`reactions` (
   `ArticleID` VARCHAR(100) NOT NULL,
-  `IPAddress` VARCHAR(45) NOT NULL,
+  `SessionID` VARCHAR(45) NOT NULL,
   `Reaction` VARCHAR(20) NULL,
-  PRIMARY KEY (`ArticleID`, `IPAddress`));
+  PRIMARY KEY (`ArticleID`, `SessionID`));
 
 CREATE TABLE `rapplerdb`.`author` (
   `ArticleID` VARCHAR(100) NOT NULL,
@@ -112,5 +112,11 @@ CREATE TABLE `rapplerdb`.`author` (
  PRIMARY KEY (`ArticleID`, `AuthorEmail`));
  
  
- INSERT INTO `rapplerdb`.`article` (`ArticleID`, `Category`, `Title`, `Content`, `Views`, `ArticleURL`, `ImageURL`, `DatePublished`, `TimePublished`, `DateUpdated`, `TimeUpdated`, `Comment`, `Reaction`, `Author`) VALUES ('a001', 'Politics', 'Lorem', 'Lorem Ipsum', '0', 'http://rapplerdb/Lorem', 'http://image', '2018-12-04', '10:14:00', '2018-12-04', '10:15:00', 'N', 'Happy', 'Npe');
+INSERT INTO `rapplerdb`.`article` (`ArticleID`, `Category`, `Title`, `Content`, `Views`, `ArticleURL`, `ImageURL`, `DatePublished`, `TimePublished`, `DateUpdated`, `TimeUpdated`, `Comment`, `Reaction`, `Author`) VALUES ('a001', 'Politics', 'Lorem', 'Lorem Ipsum', '0', 'http://rapplerdb/Lorem', 'http://image', '2018-12-04', '10:14:00', '2018-12-04', '10:15:00', 'N', 'Happy', 'Npe');
+INSERT INTO `rapplerdb`.`author` (`ArticleID`, `AuthorEmail`) VALUES ('a001', 'Npe');
+INSERT INTO `rapplerdb`.`comment` (`ArticleID`, `Comment`, `CommenterEmail`, `Date`) VALUES ('a001', 'N', 'npe@mail.com', '2018-12-04');
+INSERT INTO `rapplerdb`.`journalist` (`JournalistID`, `EmailAddress`, `Password`, `PictureURL`, `Bio`, `TwitterUserName`, `LastPosted`) VALUES ('001', 'npe@mail.com', '1234', 'http://image/image', 'lol', 'npe', '2018-12-04 10:14:00');
+INSERT INTO `rapplerdb`.`reactions` (`ArticleID`, `SessionID`, `Reaction`) VALUES ('a001', 'aa01', 'Happy');
+INSERT INTO `rapplerdb`.`user` (`EmailAddress`, `Password`, `FirstName`, `LastName`, `Birthday`, `Gender`, `DateRegistered`, `LastLoggedIn`) VALUES ('npe@mail.com', '1234', 'N', 'E', '2000-01-01', 'M', '2018-12-04', '2018-12-04');
+
 
