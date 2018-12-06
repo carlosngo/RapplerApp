@@ -10,5 +10,5 @@ package Model;
  * @author Carlos
  */
 public class JournalistDAO {
-    
+    public void 
 }

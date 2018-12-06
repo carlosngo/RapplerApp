@@ -10,5 +10,5 @@ package Model;
  * @author Carlos
  */
 public class ReactionDAO {
-    
+   
 }

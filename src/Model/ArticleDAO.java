@@ -6,6 +6,8 @@
 package Model;
 
 import java.util.*;
+import java.sql.*;
+
 /**
  *
  * @author Carlos
@@ -32,8 +34,8 @@ public class ArticleDAO {
         
     }
     
-    public Article findById(int ArticleID) {
-        
+    public Article findById(int ArticleID) throws Exception {
+       
     }
     
     public ArrayList<Article> findByTitle(String Title) {
@@ -46,6 +48,10 @@ public class ArticleDAO {
         
     }
     
+    public ArrayList<Article> findByCategory() {
+        
+    }
+    
     public boolean insertArticle(Article a) {
         
     }
@@ -55,4 +61,5 @@ public class ArticleDAO {
     public boolean deleteArticle(Article a) {
         
     }
+ 
 }

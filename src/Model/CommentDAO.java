@@ -5,10 +5,25 @@
  */
 package Model;
 
+import java.util.*;
 /**
  *
  * @author Carlos
  */
 public class CommentDAO {
+    public ArrayList<Comment> findByArticleID(int ArticleID) {
+        
+    }
     
+    public boolean updateComment(Comment c) {
+        
+    }
+    
+    public boolean insertComment(Comment c) {
+        
+    }
+    
+    public boolean deleteComment(Comment c) {
+        
+    }
 }

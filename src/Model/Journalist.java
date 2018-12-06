@@ -12,7 +12,7 @@ import java.util.*;
  *
  * @author Miggy
  */
-public class Journalist extends RegisteredUser {
+public class Journalist extends User {
 
     private int JournalistID;
     private String Bio;
