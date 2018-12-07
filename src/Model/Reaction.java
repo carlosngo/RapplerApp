@@ -13,10 +13,16 @@ public class Reaction {
     
     private int ReactionID;
     private int ArticleID;
-    private int SessionID;
+    private int EmailAddress;
     private String Reaction;
 
-    
+    public int getEmailAddress() {
+        return EmailAddress;
+    }
+
+    public void setEmailAddress(int EmailAddress) {
+        this.EmailAddress = EmailAddress;
+    }
 
     public int getArticleID(){
         return ArticleID;

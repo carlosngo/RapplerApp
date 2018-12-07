@@ -6,6 +6,7 @@
 package Model;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,13 +16,56 @@ public class User {
 
     private String EmailAddress;
     private String Password;
+    private String Role;
     private String FirstName;
     private String LastName;
+    private String Bio;
+    private ArrayList<Article> works;
     private Date Birthday;
     private String Gender;
     private Timestamp DateTimeRegistered;
     private Timestamp LastLoggedIn;
+    
+    public User() {
+        
+    }
+    
+    public User(String EmailAddress, String Password, String Role, String FirstName, String LastName, Date Birthday, String Gender) {
+        this.EmailAddress = EmailAddress;
+        this.Password = Password;
+        this.Role = Role;
+        this.FirstName = FirstName;
+        this.LastName = LastName;
+        this.Birthday = Birthday;
+        this.Gender = Gender;
+    }
 
+    
+    public String getRole() {
+        return Role;
+    }
+
+    public void setRole(String Role) {
+        this.Role = Role;
+    }
+
+    public String getBio() {
+        return Bio;
+    }
+
+    public void setBio(String Bio) {
+        this.Bio = Bio;
+    }
+
+    public ArrayList<Article> getWorks() {
+        return works;
+    }
+
+    public void setWorks(ArrayList<Article> works) {
+        this.works = works;
+    }
+    
+    
     public String getEmailAddress() {
         return EmailAddress;
     }
@@ -85,5 +129,8 @@ public class User {
     public void setDateTimeRegistered(Timestamp dateTimeRegistered) {
         DateTimeRegistered = dateTimeRegistered;
     }
-
+    
+    public void publishArticle(Article a) {
+        works.add(a);
+    }
 }

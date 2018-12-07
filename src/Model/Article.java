@@ -23,8 +23,21 @@ public class Article {
     private Timestamp DateTimeUpdated;
     private ArrayList<Reaction> reactions;
     private ArrayList<Comment> comments;
-    private ArrayList<Journalist> authors;
+    private String authorEmail;
 
+    public Article() {
+        
+    }
+    
+    public Article(int ArticleID, String Category, String Title, String Content, String author) {
+        this.ArticleID = ArticleID;
+        this.Category = Category;
+        this.Title = Title;
+        this.Content = Content;
+        this.authorEmail = author;
+    }
+
+    
     public ArrayList<Reaction> getReactions() {
         return reactions;
     }
@@ -41,12 +54,12 @@ public class Article {
         this.comments = comments;
     }
 
-    public ArrayList<Journalist> getAuthors() {
-        return authors;
+    public String getAuthor() {
+        return authorEmail;
     }
 
-    public void setAuthors(ArrayList<Journalist> authors) {
-        this.authors = authors;
+    public void setAuthor(String author) {
+        this.authorEmail = author;
     }
 
     public int getArticleID() {
@@ -104,5 +117,22 @@ public class Article {
     public void setDateTimeUpdated(Timestamp dateTimeUpdated) {
         DateTimeUpdated = dateTimeUpdated;
     }
-
+    
+    public void addComment(Comment c) {
+        comments.add(c);
+    }
+    
+    public void removeComment(Comment c) {
+        comments.remove(c);
+    }
+    
+    public void addReaction(Reaction r) {
+        reactions.add(r);
+    } 
+    
+    public void removeReaction(Reaction r) {
+        reactions.add(r);
+    }
+    
+    
 }

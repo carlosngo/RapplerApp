@@ -4,38 +4,43 @@
  * and open the template in the editor.
  */
 package Model;
+
 import java.sql.*;
 import java.util.*;
+
 /**
  *
  * @author Carlos
  */
 public class UserDAO {
-    private static final String COLUMNS = "EmailAddress, Password, FirstName, LastName, Birthday, DateRegistered, LastLoggedIn, Gender";
-    private static final String SQL_FIND_BY_EMAIL_AND_PASSWORD =
-        "SELECT " + COLUMNS + " FROM Registered_User WHERE EmailAddress = ? AND Password = ?";
-    private static final String SQL_LIST_ORDER_BY_EMAIL =
-        "SELECT " + COLUMNS + " FROM Registered_User ORDER BY EmailAddress";
-    private static final String SQL_INSERT =
-        "INSERT INTO Registered_User (" + COLUMNS + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-    private static final String SQL_UPDATE =
-        "UPDATE Registered_User SET EmailAddress = ?, Password = ?, FirstName = ?, LastName = ?, Birthday = ?, DateRegistered = ?, LastLoggedIn = ?, Gender = ? WHERE EmailAddress = ?";
-    private static final String SQL_DELETE =
-        "DELETE FROM Registered_User WHERE EmailAddress = ?";
-    private static final String SQL_EXIST_EMAIL =
-        "SELECT EmailAddress FROM Registered_User WHERE EmailAddress = ?";
+
+    private static final String SQL_FIND_BY_EMAIL_AND_PASSWORD
+            = "SELECT " + Database.USER_COLUMNS + " FROM " + Database.USER_TABLE + " WHERE EmailAddress = ? AND Password = ?";
+    private static final String SQL_LIST_ORDER_BY_EMAIL
+            = "SELECT " + Database.USER_COLUMNS + " FROM " + Database.USER_TABLE + " ORDER BY EmailAddress";
+    private static final String SQL_INSERT
+            = "INSERT INTO " + Database.USER_TABLE + " (" + Database.USER_COLUMNS + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    private static final String SQL_UPDATE
+            = "UPDATE " + Database.USER_TABLE + " SET EmailAddress = ?, Password = ?, FirstName = ?, LastName = ?, Birthday = ?, DateRegistered = ?, LastLoggedIn = ?, Gender = ?, Role = ?, Bio = ? WHERE EmailAddress = ?";
+    private static final String SQL_DELETE
+            = "DELETE FROM " + Database.USER_TABLE + " WHERE EmailAddress = ?";
+    private static final String SQL_EXIST_EMAIL
+            = "SELECT EmailAddress FROM " + Database.USER_TABLE + " WHERE EmailAddress = ?";
 
     /**
-     * Returns the user from the database matching the given email and password, otherwise null.
+     * Returns the user from the database matching the given email and password,
+     * otherwise null.
+     *
      * @param email The email of the user to be returned.
      * @param password The password of the user to be returned.
-     * @return The user from the database matching the given email and password, otherwise null.
-     
+     * @return The user from the database matching the given email and password,
+     * otherwise null.
+     *
      */
     public User find(String email, String password) throws Exception {
         return find(SQL_FIND_BY_EMAIL_AND_PASSWORD, email, password);
     }
-    
+
     public User find(String sql, Object... values) throws Exception {
         User user = null;
 
@@ -46,7 +51,7 @@ public class UserDAO {
                 statement.setObject(i + 1, values[i]);
             }
             ResultSet resultSet = statement.executeQuery();
-            
+
             if (resultSet.next()) {
                 user = map(resultSet);
             }
@@ -57,10 +62,12 @@ public class UserDAO {
     }
 
     /**
-     * Returns a list of all users from the database ordered by user ID. The list is never null and
-     * is empty when the database does not contain any user.
-     * @return A list of all users from the database ordered by user ID.
-     *  If something fails at database level.
+     * Returns a list of all users from the database ordered by user ID. The
+     * list is never null and is empty when the database does not contain any
+     * user.
+     *
+     * @return A list of all users from the database ordered by user ID. If
+     * something fails at database level.
      */
     public ArrayList<User> findAll() throws Exception {
         ArrayList<User> users = new ArrayList<>();
@@ -68,7 +75,7 @@ public class UserDAO {
             Connection con = Database.getConnection();
             PreparedStatement stmt = con.prepareStatement(SQL_LIST_ORDER_BY_EMAIL);
             ResultSet rs = stmt.executeQuery();
-            
+
             while (rs.next()) {
 //                System.out.println(rs);
                 users.add(map(rs));
@@ -76,16 +83,18 @@ public class UserDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return users;
     }
 
     /**
-     * Create the given user in the database. The user ID must be null, otherwise it will throw
-     * IllegalArgumentException. After creating, the DAO will set the DateTimeRegistered in the given user.
+     * Create the given user in the database. The user ID must be null,
+     * otherwise it will throw IllegalArgumentException. After creating, the DAO
+     * will set the DateTimeRegistered in the given user.
+     *
      * @param user The user to be created in the database.
-     * 
-     *  If something fails at database level.
+     *
+     * If something fails at database level.
      */
     public void create(User user) throws Exception {
         if (user.getDateTimeRegistered() != null) {
@@ -99,13 +108,15 @@ public class UserDAO {
                 user.getBirthday(),
                 new Timestamp(new java.util.Date().getTime()),
                 null,
-                user.getGender()
+                user.getGender(),
+                user.getRole(),
+                user.getBio()
             };
-            
+
             try {
                 Connection con = Database.getConnection();
                 PreparedStatement stmt = con.prepareStatement(SQL_INSERT);
-                
+
                 for (int i = 0; i < values.length; i++) {
                     System.out.println(values[i]);
                     stmt.setObject(i + 1, values[i]);
@@ -118,11 +129,13 @@ public class UserDAO {
     }
 
     /**
-     * Update the given user in the database. The user ID must not be null, otherwise it will throw
-     * IllegalArgumentException. Note: the password will NOT be updated. Use changePassword() instead.
+     * Update the given user in the database. The user ID must not be null,
+     * otherwise it will throw IllegalArgumentException. Note: the password will
+     * NOT be updated. Use changePassword() instead.
+     *
      * @param user The user to be updated in the database.
-     * 
-     *  If something fails at database level.
+     *
+     * If something fails at database level.
      */
     public void update(User user) throws Exception {
         Object[] values = {
@@ -134,7 +147,9 @@ public class UserDAO {
             user.getDateTimeRegistered(),
             user.getLastLoggedIn(),
             user.getGender(),
-            user.getEmailAddress(),
+            user.getRole(),
+            user.getBio(),
+            user.getEmailAddress()
         };
         try {
             Connection con = Database.getConnection();
@@ -147,7 +162,8 @@ public class UserDAO {
 //                    else if (values[i] instanceof String)
 //                        stmt.setNull(i + 1, Types.VARCHAR);
 //                } else
-                    stmt.setObject(i + 1, values[i]);
+//                System.out.println("Bla" + values[i]);
+                stmt.setObject(i + 1, values[i]);
             }
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -156,10 +172,11 @@ public class UserDAO {
     }
 
     /**
-     * Delete the given user from the database. After deleting, the DAO will set the DateTimeRegistered of the given
-     * user to null.
-     * @param user The user to be deleted from the database.
-     *  If something fails at database level.
+     * Delete the given user from the database. After deleting, the DAO will set
+     * the DateTimeRegistered of the given user to null.
+     *
+     * @param user The user to be deleted from the database. If something fails
+     * at database level.
      */
     public void delete(User user) throws Exception {
         Object[] values = {
@@ -176,14 +193,15 @@ public class UserDAO {
             user.setDateTimeRegistered(null);
         } catch (SQLException e) {
             e.printStackTrace();
-        }      
+        }
     }
 
     /**
      * Returns true if the given email address exist in the database.
+     *
      * @param email The email address which is to be checked in the database.
-     * @return True if the given email address exist in the database.
-     *  If something fails at database level.
+     * @return True if the given email address exist in the database. If
+     * something fails at database level.
      */
     public boolean existEmail(String email) throws Exception {
         boolean exist = false;
@@ -198,7 +216,9 @@ public class UserDAO {
                 stmt.setObject(i + 1, values[i]);
             }
             ResultSet rs = stmt.executeQuery();
-            if (rs.next()) exist = true;
+            if (rs.next()) {
+                exist = true;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
