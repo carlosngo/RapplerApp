@@ -18,6 +18,8 @@ public class UserDAO {
             = "SELECT " + Database.USER_COLUMNS + " FROM " + Database.USER_TABLE + " WHERE EmailAddress = ? AND Password = ?";
     private static final String SQL_LIST_ORDER_BY_EMAIL
             = "SELECT " + Database.USER_COLUMNS + " FROM " + Database.USER_TABLE + " ORDER BY EmailAddress";
+    private static final String SQL_LIST_BY_ARTICLEID
+            = "SELECT Registered_User.EmailAddress, Password, FirstName, LastName, Birthday, DateRegistered, LastLoggedIn, Gender, Role, Bio FROM " + Database.USER_TABLE + " INNER JOIN " + Database.AUTHOR_TABLE + " ON " + Database.USER_TABLE + ".EmailAddress = " + Database.AUTHOR_TABLE + ".EmailAddress WHERE ArticleID = ?";
     private static final String SQL_INSERT
             = "INSERT INTO " + Database.USER_TABLE + " (" + Database.USER_COLUMNS + ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     private static final String SQL_UPDATE
@@ -38,6 +40,7 @@ public class UserDAO {
      *
      */
     public User find(String email, String password) throws Exception {
+        System.out.println(SQL_FIND_BY_EMAIL_AND_PASSWORD);
         return find(SQL_FIND_BY_EMAIL_AND_PASSWORD, email, password);
     }
 
@@ -46,6 +49,7 @@ public class UserDAO {
 
         try {
             Connection connection = Database.getConnection();
+            
             PreparedStatement statement = connection.prepareStatement(sql);
             for (int i = 0; i < values.length; i++) {
                 statement.setObject(i + 1, values[i]);
@@ -85,6 +89,25 @@ public class UserDAO {
         }
 
         return users;
+    }
+    
+    public ArrayList<User> findAuthors (int ArticleID) throws Exception {
+        ArrayList<User> authors = new ArrayList<>();
+        try {
+            Connection con = Database.getConnection();
+            PreparedStatement stmt = con.prepareStatement(SQL_LIST_BY_ARTICLEID);
+            stmt.setObject(1, ArticleID);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+//                System.out.println(rs);
+                authors.add(map(rs));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return authors;
     }
 
     /**

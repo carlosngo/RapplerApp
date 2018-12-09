@@ -23,18 +23,17 @@ public class Article {
     private Timestamp DateTimeUpdated;
     private ArrayList<Reaction> reactions;
     private ArrayList<Comment> comments;
-    private String authorEmail;
+    private ArrayList<String> authors;
 
     public Article() {
         
     }
     
-    public Article(int ArticleID, String Category, String Title, String Content, String author) {
+    public Article(int ArticleID, String Category, String Title, String Content) {
         this.ArticleID = ArticleID;
         this.Category = Category;
         this.Title = Title;
         this.Content = Content;
-        this.authorEmail = author;
     }
 
     
@@ -52,14 +51,6 @@ public class Article {
 
     public void setComments(ArrayList<Comment> comments) {
         this.comments = comments;
-    }
-
-    public String getAuthor() {
-        return authorEmail;
-    }
-
-    public void setAuthor(String author) {
-        this.authorEmail = author;
     }
 
     public int getArticleID() {
@@ -116,6 +107,14 @@ public class Article {
 
     public void setDateTimeUpdated(Timestamp dateTimeUpdated) {
         DateTimeUpdated = dateTimeUpdated;
+    }
+   
+    public void addAuthor(String authorEmail) {
+        authors.add(authorEmail);
+    }
+    
+    public void removeAuthor(String authorEmail) {
+        authors.remove(authorEmail);
     }
     
     public void addComment(Comment c) {

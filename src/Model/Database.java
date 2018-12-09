@@ -11,7 +11,7 @@ import java.sql.*;
 
 public class Database {
     public static final String ARTICLE_TABLE = "RapplerDB.Article";
-    public static final String ARTICLE_COLUMNS = "ArticleID, Category, Title, Content, DateTimePublished, DateTimeUpdated, EmailAddress, Views";
+    public static final String ARTICLE_COLUMNS = "ArticleID, Category, Title, Content, DateTimePublished, DateTimeUpdated, Views";
     
     public static final String USER_TABLE = "RapplerDB.Registered_User";
     public static final String USER_COLUMNS = "EmailAddress, Password, FirstName, LastName, Birthday, DateRegistered, LastLoggedIn, Gender, Role, Bio";
@@ -21,6 +21,8 @@ public class Database {
     
     public static final String REACTION_TABLE = "RapplerDB.Reaction";
     public static final String REACTION_COLUMNS = "ArticleID, Reaction, ReactionID, EmailAddress";
+    
+    public static final String AUTHOR_TABLE = "RapplerDB.Author";
     
     public static Connection getConnection() throws Exception {
         String host = "jdbc:derby://localhost:1527/Employees;create=true";

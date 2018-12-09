@@ -19,6 +19,16 @@ public class Comment {
     public String commenterEmail;
     public Timestamp commentDateTime;
 
+    public Comment() {
+        
+    }
+    
+    public Comment(int ArticleID, String content, String commenterEmail) {
+        this.ArticleID = ArticleID;
+        this.content = content;
+        this.commenterEmail = commenterEmail;
+    }
+
     public int getCommentID() {
         return CommentID;
     }

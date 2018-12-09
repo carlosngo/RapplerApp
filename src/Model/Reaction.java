@@ -13,14 +13,24 @@ public class Reaction {
     
     private int ReactionID;
     private int ArticleID;
-    private int EmailAddress;
+    private String EmailAddress;
     private String Reaction;
 
-    public int getEmailAddress() {
+    public Reaction(int ArticleID, String EmailAddress, String Reaction) {
+        this.ArticleID = ArticleID;
+        this.EmailAddress = EmailAddress;
+        this.Reaction = Reaction;
+    }
+
+    public Reaction() {
+        
+    }
+    
+    public String getEmailAddress() {
         return EmailAddress;
     }
 
-    public void setEmailAddress(int EmailAddress) {
+    public void setEmailAddress(String EmailAddress) {
         this.EmailAddress = EmailAddress;
     }
 

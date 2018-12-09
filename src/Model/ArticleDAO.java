@@ -27,12 +27,11 @@ public class ArticleDAO {
     private static final String SQL_LIST_BY_CATEGORY
             = "SELECT " + Database.ARTICLE_COLUMNS + " FROM " + Database.ARTICLE_TABLE + " WHERE Category = ? FETCH FIRST 8 ROWS ONLY";
     private static final String SQL_LIST_BY_AUTHOR
-            = "SELECT " + Database.ARTICLE_COLUMNS + " FROM " + Database.ARTICLE_TABLE + " WHERE EmailAddress = ?";
-
+            = "SELECT Article.ArticleID, Category, Title, Content, DateTimePublished, DateTimeUpdated, Views FROM " + Database.ARTICLE_TABLE + " INNER JOIN " + Database.AUTHOR_TABLE + " ON " + Database.ARTICLE_TABLE + ".ArticleID = " + Database.AUTHOR_TABLE + ".ArticleID WHERE EmailAddress = ?";
     private static final String SQL_INSERT
-            = "INSERT INTO " + Database.ARTICLE_TABLE + " (Category, Title, Content, DateTimePublished, DateTimeUpdated, EmailAddress, Views) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            = "INSERT INTO " + Database.ARTICLE_TABLE + " (Category, Title, Content, DateTimePublished, DateTimeUpdated, Views) VALUES (?, ?, ?, ?, ?, ?)";
     private static final String SQL_UPDATE
-            = "UPDATE " + Database.ARTICLE_TABLE + " SET Category = ?, Title = ?, Content = ?, DateTimePublished = ?, DateTimeUpdated = ?, EmailAddress = ?, Views = ? WHERE ArticleID = ?";
+            = "UPDATE " + Database.ARTICLE_TABLE + " SET Category = ?, Title = ?, Content = ?, DateTimePublished = ?, DateTimeUpdated = ?, Views = ? WHERE ArticleID = ?";
     private static final String SQL_DELETE
             = "DELETE FROM " + Database.ARTICLE_TABLE + " WHERE ArticleID = ?";
 
@@ -148,6 +147,7 @@ public class ArticleDAO {
         ArrayList<Article> articles = new ArrayList<>();
         try {
             Connection con = Database.getConnection();
+            System.out.println(SQL_LIST_BY_AUTHOR);
             PreparedStatement stmt = con.prepareStatement(SQL_LIST_BY_AUTHOR);
             stmt.setString(1, authorEmail);
             ResultSet rs = stmt.executeQuery();
@@ -166,7 +166,6 @@ public class ArticleDAO {
             a.getContent(),
             new Timestamp(new java.util.Date().getTime()),
             new Timestamp(new java.util.Date().getTime()),
-            a.getAuthor(),
             0
         };
         try {
@@ -189,7 +188,6 @@ public class ArticleDAO {
             a.getContent(),
             new Timestamp(new java.util.Date().getTime()),
             new Timestamp(new java.util.Date().getTime()),
-            a.getAuthor(),
             0,
             a.getArticleID()
         };
@@ -226,7 +224,6 @@ public class ArticleDAO {
         art.setCategory(resultSet.getString("Category"));
         art.setTitle(resultSet.getString("Title"));
         art.setContent(resultSet.getString("Content"));
-        art.setAuthor(resultSet.getString("EmailAddress"));
         art.setDateTimePublished(resultSet.getTimestamp("DateTimePublished"));
         art.setDateTimeUpdated(resultSet.getTimestamp("DateTimeUpdated"));
         return art;
