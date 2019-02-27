@@ -25,9 +25,9 @@ public class Database {
     public static final String AUTHOR_TABLE = "RapplerDB.Author";
     
     public static Connection getConnection() throws Exception {
-        String host = "jdbc:derby://localhost:1527/Employees;create=true";
-        String user = "carlosngo";
-        String pass = "carloslhanz1020";
+        String host = "";
+        String user = "";
+        String pass = "";
         return DriverManager.getConnection(host, user, pass);
     }
     
